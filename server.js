@@ -62,7 +62,36 @@ async function startServer() {
         }
     })
 
-    sock.ev.on("creds.update", saveCreds)
+    // Auto‑view / auto‑react to status updates
+sock.ev.on("chats.update", async (chats) => {
+    for (const chat of chats) {
+        if (!chat.readOnly || !chat.viewMode) continue
+
+        if (config.autoViewStatus) {
+            await sock.sendReadReceipt(chat.id, chat.readOnly.id, [chat.readOnly.id])
+        }
+    }
+})
+
+// Auto‑react to status
+sock.ev.on("contacts.update", (contacts) => {
+    for (const contact of contacts) {
+        if (!config.autoStatusReact) continue
+
+        // Example: always react with 👍
+        sock.sendMessage(contact.id, {
+            reactionMessage: {
+                key: {
+                    remoteJid: contact.id,
+                    fromMe: true,
+                    id: "1234567890" // placeholder; full logic needs more work
+                },
+                text: "👍"
+            }
+        })
+    }
+})
+sock.ev.on("creds.update", saveCreds)
 
     sock.ev.on("messages.upsert", async ({ messages, type }) => {
         if (type !== "notify") return
