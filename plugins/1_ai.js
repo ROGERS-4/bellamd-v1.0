@@ -25,7 +25,7 @@ export default {
         const command = args[0]
         const query = text.slice(command.length + 1).trim()
 
-        if (!query) return reply("Provide a question!")
+        if (!query) return reply("Provide a question!" + FOOTER)
 
         const api = AI_API_MAP[command] || AI_API_MAP.gpt
         const url = api + encodeURIComponent(query)
