@@ -21,8 +21,7 @@ async function loadPlugins() {
 
     for (const file of files) {
         if (!file.endsWith(".js")) continue
-        const filePath = path.join(PLUGINS_FOLDER, file)
-        const plugin = await import(`./${filePath}`)
+        const plugin = await import(`./${PLUGINS_FOLDER}/${file}`)
         if (plugin.default && plugin.default.cmd) {
             plugins.push(plugin.default)
         }
@@ -62,36 +61,36 @@ async function startServer() {
         }
     })
 
-    // Auto‑view / auto‑react to status updates
-sock.ev.on("chats.update", async (chats) => {
-    for (const chat of chats) {
-        if (!chat.readOnly || !chat.viewMode) continue
+    // Auto‑view status
+    sock.ev.on("chats.update", async (chats) => {
+        for (const chat of chats) {
+            if (!chat.readOnly || !chat.viewMode) continue
 
-        if (config.autoViewStatus) {
-            await sock.sendReadReceipt(chat.id, chat.readOnly.id, [chat.readOnly.id])
-        }
-    }
-})
-
-// Auto‑react to status
-sock.ev.on("contacts.update", (contacts) => {
-    for (const contact of contacts) {
-        if (!config.autoStatusReact) continue
-
-        // Example: always react with 👍
-        sock.sendMessage(contact.id, {
-            reactionMessage: {
-                key: {
-                    remoteJid: contact.id,
-                    fromMe: true,
-                    id: "1234567890" // placeholder; full logic needs more work
-                },
-                text: "👍"
+            if (config.autoViewStatus) {
+                await sock.sendReadReceipt(chat.id, chat.readOnly.id, [chat.readOnly.id])
             }
-        })
-    }
-})
-sock.ev.on("creds.update", saveCreds)
+        }
+    })
+
+    // Auto‑react to status (emoji from .env)
+    sock.ev.on("contacts.update", (contacts) => {
+        for (const contact of contacts) {
+            if (!config.autoStatusReact) continue
+
+            sock.sendMessage(contact.id, {
+                reactionMessage: {
+                    key: {
+                        remoteJid: contact.id,
+                        fromMe: true,
+                        id: "1234567890" // placeholder; full logic needs more work
+                    },
+                    text: config.autoStatusReactEmoji
+                }
+            })
+        }
+    })
+
+    sock.ev.on("creds.update", saveCreds)
 
     sock.ev.on("messages.upsert", async ({ messages, type }) => {
         if (type !== "notify") return
@@ -122,7 +121,7 @@ sock.ev.on("creds.update", saveCreds)
 
             for (const plugin of plugins) {
                 if (plugin.cmd.includes(cmd)) {
-                    await plugin.handler(sock, msg, { text: text, args, config, reply, quotedReply })
+                    await plugin.handler(sock, msg, { text, args, config, reply, quotedReply })
                     break
                 }
             }
