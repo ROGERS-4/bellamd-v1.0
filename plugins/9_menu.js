@@ -2,7 +2,7 @@ import config from "../config.js"
 
 const menuText = `
 ╭══ ⋊⋊ 𝐐𝐔𝐄𝐄𝐍 𝐁𝐄𝐋𝐋𝐀 𝐌𝐃 ⋉⋉ ═⊷
-┃❍ *Mᴏᴅᴇ:*  public
+┃❍ *Mᴏᴅᴇ:*  ${config.mode}
 ┃❍ *Pʀᴇғɪx:*  [ ${config.prefix} ]
 ┃❍ *Usᴇʀ:*  ${config.botName} User
 ┃❍ *Pʟᴜɢɪɴs:*  279
@@ -30,8 +30,7 @@ const menuText = `
 ┃◇ .upscale
 ┃◇ .remini
 ┃◇ .removebg
-┃◇ .vocalremover
-┃◇ .vocalremoverv2
+┃◇ .removebgv2
 ┃◇ .web2zip
 ┃◇ .createqr
 ┃◇ .readqr
@@ -48,7 +47,6 @@ const menuText = `
 ╭━━━━❮ *𝚂𝙴𝙰𝚁𝙲𝙷* ❯━⊷ 
 ┃◇ .google
 ┃◇ .ggleimage
-┃◇ .unsplash
 ┃◇ .yts
 ┃◇ .lyrics
 ┃◇ .lyricsv2
