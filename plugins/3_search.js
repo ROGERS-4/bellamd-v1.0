@@ -8,12 +8,12 @@ const FOOTER = `
 
 export default {
     name: "search",
-    cmd: ["google", "ggleimage", "unsplash", "yts", "lyrics", "lyricsv2", "spotifysearch", "apkmirror", "happymod", "tiktoksearch", "wallpaper", "weather"],
+    cmd: ["google", "ggleimage", "yts", "lyrics", "lyricsv2", "spotifysearch", "apkmirror", "happymod", "tiktoksearch", "wallpaper", "weather"],
     category: "search",
     async handler(sock, msg, { text, args, reply }) {
         const [cmd, ...rest] = text.split(" ")
         const query = rest.join(" ")
-        if (!query) return reply("Provide a search term." + FOOTER)
+        if (!query) return reply("🔸 Provide a search term." + FOOTER)
 
         const baseUrl = `${config.apiBase}/api/search/`
 
@@ -21,8 +21,8 @@ export default {
             const endpoint = {
                 google: baseUrl + "google",
                 ggleimage: baseUrl + "googleimage",
-                unsplash: baseUrl + "unsplash",
                 yts: baseUrl + "yts",
                 lyrics: baseUrl + "lyrics",
                 lyricsv2: baseUrl + "lyricsv2",
-                spotifysearch: baseUrl
+                spotifysearch: baseUrl + "spotifysearch",
+                apkmirror: baseUrl +
