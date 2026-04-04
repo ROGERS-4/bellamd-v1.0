@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/ROGERS-4/bellamd-v1.0/main/assets/banner.jpg" alt="Queen Bella Banner" width="100%"/>
+<img src="https://i.imgur.com/687ZxLW.jpeg" alt="Queen Bella Banner" width="100%"/>
 
 # ✨ QUEEN BELLA V1 ✨
 
