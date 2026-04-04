@@ -1,7 +1,7 @@
 <div align="center">
   
   <!-- Animated Banner with Your Images -->
-  <img src="https://kommodo.ai/i/8h8NYZWoj7ApT71jPw0K" width="100%" alt="Queen Bella Banner"/>
+  <img src="https://kommodo.ai/i/8h8NYZWoj7ApT71jPw0K.jpg" width="100%" alt="Queen Bella Banner"/>
   
   <!-- Animated Title -->
   <h1>
