@@ -99,7 +99,7 @@ BACKUP_FOLDER=backups
 
 CHANNEL_LINK=https://whatsapp.com/channel/0029VbBR3ib3LdQQlEG3vd1x
 
-MENU_IMAGES=https://kommodo.ai/i/8h8NYZWoj7ApT71jPw0K,https://kommodo.ai/i/UwSftayk62UGAGvbQuSz,https://kommodo.ai/i/tajAIeDgsajlCsWc3lWx
+MENU_IMAGES=https://i.imgur.com/687ZxLW.jpeg
 
 AUTO_VIEW_STATUS=true
 AUTO_REACT_STATUS=true
